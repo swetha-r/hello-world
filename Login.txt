@@ -1,0 +1,55 @@
+Login function
+
+	public static void Login(String sUserId, String sPassword, String sOrganization) {
+		openBrowser();
+		navigate("link");
+		writeInInput("Username_TEST", sUserId);
+		writeInInput("Password_TEST", sPassword);
+		writeInInput("Organization_TEST", sOrganization);
+		clickButton("Submit");
+		
+		if (verifyTitle("Reference Data Manager")) {
+			test.log(LogStatus.PASS, "Login", "Reference Data Manager Verified");
+		} else {
+			test.log(LogStatus.FAIL, "Login", "Reference Data Manager Not Found");
+		}
+	}
+
+//Navigate function
+public static void navigate(String data) {
+		// Navigating to URL LOG
+		try {
+			driver.navigate().to(GetConfig(data));
+
+		} catch (Exception e) {
+			test.log(LogStatus.ERROR.FAIL.FAIL, "Navigate",
+					"Cant Navigated To Url " + e.getMessage());
+		}
+	}
+
+//writeInInput
+public static boolean writeInInput(String object,String data) {
+		// //APP_LOGS.debug("Writing in text box");
+
+		try {
+			getwebLocator(GetLocator(object)).sendKeys(data);
+			return true;
+		} catch (Exception e) {
+			test.log(LogStatus.ERROR.FAIL, "writeInInput", "Unable to write "
+					+ e.getMessage());
+		}
+		return false;
+	}
+
+//clickButton
+public static void clickButton(String object) {
+		// //APP_LOGS.debug("Clicking on Button");
+		try {
+			getwebLocator(GetLocator(object)).click();
+		} catch (Exception e) {
+			test.log(LogStatus.ERROR.FAIL.FAIL, "clickButton",
+					"Button Not Clicked" + e.getMessage());
+		}
+		// test.log(LogStatus.INFO, "clickButton", "Button Clicked");
+	}
+
