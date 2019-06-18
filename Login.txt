@@ -1,3 +1,4 @@
+Git repository -- hello world
 Login function
 
 	public static void Login(String sUserId, String sPassword, String sOrganization) {
@@ -52,4 +53,5 @@ public static void clickButton(String object) {
 		}
 		// test.log(LogStatus.INFO, "clickButton", "Button Clicked");
 	}
+
 
